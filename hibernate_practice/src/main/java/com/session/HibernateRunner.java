@@ -1,10 +1,15 @@
 package com.session;
 
 import entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import static util.HibernateUtil.buildSessionFactory;
 
 public class HibernateRunner {
+
+    private static final Logger log = LogManager.getLogger(HibernateRunner.class);
 
     public static void main(String[] args){
         User user = User.builder()
@@ -13,6 +18,7 @@ public class HibernateRunner {
             .lastName("Ivanchelo")
             .build();
 
+        log.error("{} BLABLABLA", user.toString());
 
         try(var sessionFactory = buildSessionFactory()){
             try(var session1 = sessionFactory.openSession()){
